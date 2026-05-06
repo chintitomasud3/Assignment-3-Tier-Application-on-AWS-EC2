@@ -17,12 +17,11 @@ app.add_middleware(
 )
 
 # ---------------- MongoDB ----------------
-MONGO_URL = "mongodb://10.0.13.224:27017"
+MONGO_URI = "mongodb://10.0.3.90:27017"
 
-client = AsyncIOMotorClient(MONGO_URL)
+client = AsyncIOMotorClient(MONGO_URI)
 db = client.my_database
 collection = db.users
-
 
 # ---------------- Model ----------------
 class User(BaseModel):
@@ -34,58 +33,7 @@ class User(BaseModel):
 # ---------------- HTML PAGE ----------------
 @app.get("/", response_class=HTMLResponse)
 async def home():
-    return """
-<!DOCTYPE html>
-<html>
-<head>
-    <title>FastAPI MongoDB App</title>
-    <style>
-        body { font-family: Arial; max-width: 500px; margin: 50px auto; }
-        input { width: 100%; padding: 10px; margin: 8px 0; }
-        button { width: 100%; padding: 10px; background: green; color: white; border: none; }
-        #result { margin-top: 15px; }
-    </style>
-</head>
-<body>
-
-<h2>Create User</h2>
-
-<form id="userForm">
-    <input type="text" id="name" placeholder="Name" required>
-    <input type="email" id="email" placeholder="Email" required>
-    <input type="number" id="age" placeholder="Age">
-
-    <button type="submit">Create</button>
-</form>
-
-<div id="result"></div>
-
-<script>
-document.getElementById("userForm").addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    const data = {
-        name: document.getElementById("name").value,
-        email: document.getElementById("email").value,
-        age: document.getElementById("age").value ? Number(document.getElementById("age").value) : null
-    };
-
-    const res = await fetch("/users", {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(data)
-    });
-
-    const result = await res.json();
-
-    document.getElementById("result").innerHTML =
-        "<pre>" + JSON.stringify(result, null, 2) + "</pre>";
-});
-</script>
-
-</body>
-</html>
-"""
+    return "<h2>FastAPI Running Successfully 🚀</h2>"
 
 
 # ---------------- CREATE USER ----------------
