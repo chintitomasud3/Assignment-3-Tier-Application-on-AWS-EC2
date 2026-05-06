@@ -2,55 +2,7 @@
 <html>
 <head>
     <title>User App</title>
-
-    <style>
-        body {
-            font-family: Arial;
-            max-width: 600px;
-            margin: 40px auto;
-            background: #f4f4f4;
-        }
-
-        h2 {
-            text-align: center;
-        }
-
-        form, .users {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-        }
-
-        input {
-            width: 100%;
-            padding: 10px;
-            margin: 8px 0;
-        }
-
-        button {
-            width: 100%;
-            padding: 10px;
-            background: green;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background: darkgreen;
-        }
-
-        .user {
-            padding: 10px;
-            border-bottom: 1px solid #ddd;
-        }
-
-        pre {
-            background: #eee;
-            padding: 10px;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -76,53 +28,6 @@
     <div id="userList"></div>
 </div>
 
-<script>
-const API = "/api"; // nginx route
-
-// ---------------- CREATE USER ----------------
-document.getElementById("userForm").addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    const data = {
-        name: document.getElementById("name").value,
-        email: document.getElementById("email").value,
-        age: document.getElementById("age").value
-            ? Number(document.getElementById("age").value)
-            : null
-    };
-
-    const res = await fetch(API + "/users", {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(data)
-    });
-
-    const result = await res.json();
-
-    document.getElementById("result").innerHTML =
-        "<pre>" + JSON.stringify(result, null, 2) + "</pre>";
-
-    loadUsers(); // refresh list
-});
-
-// ---------------- LOAD USERS ----------------
-async function loadUsers() {
-    const res = await fetch(API + "/users");
-    const users = await res.json();
-
-    const list = document.getElementById("userList");
-    list.innerHTML = "";
-
-    users.forEach(u => {
-        list.innerHTML += `
-            <div class="user">
-                <b>${u.name}</b> (${u.email})<br>
-                Age: ${u.age ?? "N/A"}
-            </div>
-        `;
-    });
-}
-</script>
-
+<script src="app.js"></script>
 </body>
 </html>
