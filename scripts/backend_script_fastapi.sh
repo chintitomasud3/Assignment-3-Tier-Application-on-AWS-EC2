@@ -7,7 +7,7 @@ sudo apt update
 
 echo "🐍 Installing Python & tools..."
 sudo apt install -y python3 python3-pip python3-venv
-
+cd ..
 echo "📁 Creating project directory..."
 mkdir -p Backend
 cd Backend
@@ -96,4 +96,4 @@ EOF
 
 echo "🔥 Starting FastAPI server..."
 
-uvicorn main:app --host 0.0.0.0 --port 8000
+# uvicorn main:app --host 0.0.0.0 --port 8000
