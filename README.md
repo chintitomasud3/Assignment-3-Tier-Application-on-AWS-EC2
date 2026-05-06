@@ -81,7 +81,7 @@ sudo systemctl status mongod
 
 ---
 
-## 🌐 10. Allow Remote Access (Optional)
+## 🌐 10. Allow Remote Access 
 
 ### Config file edit:
 
