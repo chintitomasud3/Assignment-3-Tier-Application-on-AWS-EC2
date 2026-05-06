@@ -94,6 +94,6 @@ async def get_user(user_id: str):
     return {"message": "User not found"}
 EOF
 
-echo "🔥 Starting FastAPI server..."
+echo "🔥 Start the server using. # uvicorn main:app --host 0.0.0.0 --port 8000.."
 
 # uvicorn main:app --host 0.0.0.0 --port 8000
