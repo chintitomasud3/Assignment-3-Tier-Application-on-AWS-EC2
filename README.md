@@ -401,26 +401,16 @@ curl http://15.223.198.103/api/users
 ```
 Assignment-3-Tier-Application-on-AWS-EC2/
 ├── README.md                          # This file
-├── backend/
+├── Backend/
 │   ├── main.py                        # FastAPI application code
 │   ├── requirements.txt               # Python dependencies
-│   └── venv/                          # (gitignored)
+│                      
 ├── frontend/
 │   ├── index.html                     # Main frontend page
 │   ├── css/                           # Stylesheets
 │   ├── js/                            # JavaScript files
 │   └── (other static assets)
-├── infrastructure/
-│   ├── scripts/
-│   │   ├── setup-db.sh                # MongoDB installation script
-│   │   ├── setup-backend.sh           # Backend setup helper
-│   │   ├── setup-frontend.sh          # Frontend setup helper
-│   │   └── nginx.conf                 # Nginx reverse proxy config
-│   └── security-groups.md             # SG rules documentation
-├── docs/
-│   ├── architecture.png               # Architecture diagram
-│   └── troubleshooting.md             # Common issues & fixes
-└── .gitignore
+
 ```
 
 ---
