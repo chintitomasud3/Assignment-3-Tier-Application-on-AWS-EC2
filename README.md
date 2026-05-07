@@ -242,14 +242,12 @@ http {
 
 #### 4.2 Clone Repository & Start Frontend using Python `http.server` (Port 8000)
 
-> 💡 **Note**: `http.server` is a **built-in Python module** — no separate installation required! ✅
 
 ```bash
 # 🔄 Update system
 sudo apt update
 
-# 🐍 Install Git (Python 3.12 already included in Ubuntu 24.04)
-sudo apt install -y git
+`pip install httpserver`
 
 # 📦 Clone the assignment repository
 git clone https://github.com/chintitomasud3/Assignment-3-Tier-Application-on-AWS-EC2.git
@@ -268,12 +266,6 @@ curl http://10.0.10.230:8000
 # Or test in browser:
 # http://10.0.10.230:8000
 ```
-
-> 📌 **About `http.server`**:
-> - Built-in module in Python 3.x (no `pip install` needed)
-> - Used for development/testing static file serving
-> - Command: `python3 -m http.server <port> --bind <ip>`
-> - For production: Use Nginx, Apache, or a proper frontend build system
 
 ---
 
@@ -403,7 +395,7 @@ Assignment-3-Tier-Application-on-AWS-EC2/
 │   ├── index.html                     # Main frontend page
 │   ├── css/                           # Stylesheets
 │   ├── js/                            # JavaScript files
-│   └── (other static assets)
+│   
 ├── infrastructure/
 │   ├── scripts/
 │   │   ├── setup-db.sh                # MongoDB installation script
@@ -414,7 +406,7 @@ Assignment-3-Tier-Application-on-AWS-EC2/
 ├── docs/
 │   ├── architecture.png               # Architecture diagram
 │   └── troubleshooting.md             # Common issues & fixes
-└── .gitignore
+└
 ```
 
 ---
@@ -444,88 +436,4 @@ mongosh --host 10.0.13.224 --eval "db.adminCommand('ping')"  # Test DB connectio
 
 ---
 
-## 📦 Dependencies Summary
 
-| Layer | Technology | Version | Purpose | Installation |
-|-------|-----------|---------|---------|-------------|
-| Presentation | Nginx | 1.24+ | Reverse proxy & routing | `sudo apt install nginx` |
-| Presentation | Python http.server | 3.12 (built-in) | Static file serving (frontend) | ✅ No install needed |
-| Application | FastAPI | 0.109+ | REST API framework | `pip install fastapi` |
-| Application | Uvicorn | 0.27+ | ASGI server | `pip install uvicorn` |
-| Application | Motor | 3.3+ | Async MongoDB driver | `pip install motor` |
-| Application | Pydantic | 2.5+ | Data validation | `pip install pydantic` |
-| Data | MongoDB | 7.0 | NoSQL database | `sudo apt install mongodb-org` |
-| OS | Ubuntu Server | **24.04 LTS** | EC2 AMI | AWS Console |
-
----
-
-## 🎓 Learning Outcomes
-
-✅ Deployed proper 3-tier architecture across 3 EC2 instances  
-✅ Implemented Nginx reverse proxy with path-based routing (`/` vs `/api/`)  
-✅ Secured inter-layer communication using private IPs + Security Groups  
-✅ Built async FastAPI backend with MongoDB integration  
-✅ Used Python's built-in `http.server` for lightweight frontend serving *(no installation required)*  
-✅ Organized code in Git repository for version control & collaboration  
-✅ Deployed on latest **Ubuntu Server 24.04 LTS** environment  
-✅ Documented full setup for reproducibility and grading  
-
----
-
-## 🔄 Future Improvements (Optional Enhancements)
-
-- [ ] Add HTTPS with Let's Encrypt on Nginx
-- [ ] Implement MongoDB authentication & TLS encryption
-- [ ] Use AWS Systems Manager instead of SSH keys
-- [ ] Add health check endpoints for auto-scaling
-- [ ] Replace `http.server` with React/Vue frontend for production
-- [ ] Containerize services with Docker + ECS/EKS
-- [ ] Add logging & monitoring with CloudWatch
-- [ ] Add `systemd` service files for auto-start on reboot
-
----
-
-> 🙏 **Submitted by**: Masudur Rahman  
-> 📧 mrahman021992@gmail.com | 📱 0171234567  
-> 🔗 **Git Repository**: https://github.com/chintitomasud3/Assignment-3-Tier-Application-on-AWS-EC2
-
----
-
-✅ **Submission Checklist**:
-- [ ] 3 EC2 instances running Ubuntu 24.04 LTS with proper tags
-- [ ] MongoDB installed & accessible from backend private IP
-- [ ] FastAPI backend running on port 9000 (from Git repo)
-- [ ] Frontend running on port 8000 via Python `http.server` *(built-in, no install)*
-- [ ] Nginx configured: `/` → frontend, `/api/` → backend
-- [ ] Security Groups configured with least privilege
-- [ ] Screenshots captured for each layer + end-to-end test
-- [ ] Application accessible via `http://15.223.198.103/`
-- [ ] README complete with setup, config, screenshots, access results
-- [ ] Git repository public and contains `backend/` and `frontend/` folders
-
----
-
-> 💡 **Bangla Note **(Masudur Bhai):  
-> *Bhai, assignment-er shob requirement ekhane cover kora hoyeche:*  
-> ✅ *3 ta EC2 instance - presentation, application, data layer*  
-> ✅ *Public IP `15.223.198.103:80` → Nginx → Frontend `10.0.10.230:8000`*  
-> ✅ *`/api/` route e request backend `10.0.1.226:9000`-e jabe*  
-> ✅ *Backend & Frontend code Git repo theke clone kore setup*  
-> ✅ *Frontend er jonno Python-er built-in `http.server` use kora hoyeche — **kono alada installation lagbe na**! 🎉*  
-> ✅ *Ubuntu Server **24.04 LTS** use kora hoyeche (latest stable)*  
-> ✅ *MongoDB setup script step-by-step deowa ache*  
-> ✅ *Security group rules private IP based - production ready approach*  
->   
-> *Submission-er age:*  
-> 1. *Sob screenshot nia niben (mongod status, uvicorn log, `http.server` output, nginx test, browser load)*  
-> 2. *README-e Git repo link ta already update kora ache*  
-> 3. *Public IP `15.223.198.103` screenshot-e blur kora lagle kore niben*  
-> 4. *`backend/requirements.txt` file ta repo-te ache confirm koren*  
-> 5. *Frontend folder-e `index.html` ache check koren*  
->   
-> *InshaAllah full marks paben! 🚀 Best of luck, Masudur Bhai!*
-
----
-
-*Last Updated: $(date)*  
-*Response ID: #3TIER-AWS-EC2-UBUNTU24-HTTPSERVER-FINAL-005*
