@@ -342,57 +342,36 @@ curl http://15.223.198.103/api/users
 
 ---
 
+
+
 ## 📸 Screenshots (Proof of Work)
+
+# Screenshots
+
+## Backend Code
+![Backend Code](Screenshots/backend_code.png)
+
+## Backend Server Installation
+![Backend Server Installation](Screenshots/backend_server_installation.png)
+
+## Frontend Data Entry With Status
+![Frontend Data Entry](Screenshots/frontend_data_entry_with_status.png)
+
+## Frontend Page
+![Frontend Page](Screenshots/frontend_page.png)
+
+## Frontend Server
+![Frontend Server](Screenshots/frontend_server.png)
+
+## Telnet Connectivity
+![Telnet Connectivity](Screenshots/telnet_connectivity.png)
+
+## Upgradation
+![Upgradation](Screenshots/upgradation.png)
+
 
 > 📌 *Replace placeholders below with actual screenshots from your deployment*
 
-### 🔹 Screenshot 1: MongoDB Running on Data Layer
-```
-[📸 INSERT: sudo systemctl status mongod on 10.0.13.224]
-```
-✅ MongoDB active and accepting connections
-
-### 🔹 Screenshot 2: Backend API Running
-```
-[📸 INSERT: uvicorn log + curl localhost:9000/users on 10.0.1.226]
-```
-✅ FastAPI listening on port 9000
-
-### 🔹 Screenshot 3: Frontend on Port 8000 (Python http.server)
-```
-[📸 INSERT: curl http://10.0.10.230:8000 or browser screenshot]
-```
-✅ Python http.server responding on presentation layer
-
-### 🔹 Screenshot 4: Nginx Proxy - Frontend Load
-```
-[📸 INSERT: Browser screenshot showing http://15.223.198.103/ loads frontend]
-```
-✅ Nginx correctly proxies `/` → `10.0.10.230:8000`
-
-### 🔹 Screenshot 5: Nginx Proxy - API Call
-```
-[📸 INSERT: curl http://15.223.198.103/api/users showing user data]
-```
-✅ Full flow: Browser → Nginx:80 → Backend:9000 → MongoDB:27017
-
-### 🔹 Screenshot 6: AWS EC2 Console
-```
-[📸 INSERT: EC2 dashboard with 3 tagged instances running Ubuntu 26.04 LTS]
-```
-✅ 3-tier architecture deployed across 3 EC2 instances
-
-### 🔹 Screenshot 7: Git Repository
-```
-[📸 INSERT: GitHub repo showing backend/ and frontend/ folders]
-```
-✅ Code organized in Git repository: https://github.com/chintitomasud3/Assignment-3-Tier-Application-on-AWS-EC2
-
-### 🔹 Screenshot 8: Python http.server Running
-```
-[📸 INSERT: Terminal output showing "Serving HTTP on 10.0.10.230 port 8000"]
-```
-✅ Confirms built-in http.server is active (no installation needed)
 
 ---
 
