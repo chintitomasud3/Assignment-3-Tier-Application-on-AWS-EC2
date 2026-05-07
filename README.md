@@ -274,12 +274,7 @@ curl http://10.0.10.230:8000
 # http://10.0.10.230:8000
 ```
 
-> 📌 **About `http.server`**:
-> - Built-in module in Python 3.x (`python3 -m http.server`)
-> - No `pip install` needed — it comes with Python!
-> - Used for development/testing static file serving
-> - Command: `python3 -m http.server <port> --bind <ip>`
-> - For production: Use Nginx, Apache, or a proper frontend build system
+
 
 ---
 
