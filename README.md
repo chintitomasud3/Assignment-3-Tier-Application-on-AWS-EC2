@@ -68,7 +68,7 @@ Design and deploy a scalable 3-tier web application on AWS EC2 with proper separ
 | AWS Account | EC2 access with `t2.micro` or higher |
 | SSH Client | Key pair (.pem file) for instance access |
 | Local Machine | Git, Terminal, Browser, curl |
-| OS | **Ubuntu Server 24.04 LTS **(Noble Numbat) |
+| OS | **Ubuntu Server 26.04 LTS** |
 | Security Groups | Configured as per section below |
 
 ---
@@ -87,7 +87,12 @@ Design and deploy a scalable 3-tier web application on AWS EC2 with proper separ
 
 ### 🔹 Step 2: Configure Data Layer (MongoDB) 🗄️
 
-#### 🧩 MongoDB Installation Steps (Ubuntu 24.04):
+**SSH into `ec2-data` **(10.0.13.224):
+```bash
+ssh -i "your-key.pem" ubuntu@10.0.13.224
+```
+
+#### 🧩 MongoDB Installation Steps (Ubuntu 26.04):
 
 ```bash
 # 🔄 1. System Update
@@ -139,7 +144,7 @@ mongosh --eval "db.adminCommand('ping')"
 
 ### 🔹 Step 3: Configure Application Layer (FastAPI) ⚡
 
-**connect `ec2-application` **(10.0.1.226):
+**SSH into `ec2-application` **(10.0.1.226):
 
 #### 🐍 Clone Repository & Setup Backend:
 
@@ -147,7 +152,7 @@ mongosh --eval "db.adminCommand('ping')"
 # 🔄 Update system
 sudo apt update
 
-# 🐍 Install Python & Git (Python 3.12 pre-installed on Ubuntu 26.04)
+# 🐍 Install Python & Git (Python 3.12+ pre-installed on Ubuntu 26.04)
 sudo apt install -y python3-pip python3-venv git
 
 # 📦 Clone the assignment repository
@@ -242,12 +247,14 @@ http {
 
 #### 4.2 Clone Repository & Start Frontend using Python `http.server` (Port 8000)
 
+> 💡 **Important**: `http.server` is a **built-in Python module** — **NO pip installation required!** ✅
 
 ```bash
 # 🔄 Update system
 sudo apt update
 
-`pip install httpserver`
+# 🐍 Install Git (Python 3.12+ already included in Ubuntu 26.04)
+sudo apt install -y git
 
 # 📦 Clone the assignment repository
 git clone https://github.com/chintitomasud3/Assignment-3-Tier-Application-on-AWS-EC2.git
@@ -266,6 +273,13 @@ curl http://10.0.10.230:8000
 # Or test in browser:
 # http://10.0.10.230:8000
 ```
+
+> 📌 **About `http.server`**:
+> - Built-in module in Python 3.x (`python3 -m http.server`)
+> - No `pip install` needed — it comes with Python!
+> - Used for development/testing static file serving
+> - Command: `python3 -m http.server <port> --bind <ip>`
+> - For production: Use Nginx, Apache, or a proper frontend build system
 
 ---
 
@@ -364,7 +378,7 @@ curl http://15.223.198.103/api/users
 
 ### 🔹 Screenshot 6: AWS EC2 Console
 ```
-[📸 INSERT: EC2 dashboard with 3 tagged instances running Ubuntu 24.04 LTS]
+[📸 INSERT: EC2 dashboard with 3 tagged instances running Ubuntu 26.04 LTS]
 ```
 ✅ 3-tier architecture deployed across 3 EC2 instances
 
@@ -395,7 +409,7 @@ Assignment-3-Tier-Application-on-AWS-EC2/
 │   ├── index.html                     # Main frontend page
 │   ├── css/                           # Stylesheets
 │   ├── js/                            # JavaScript files
-│   
+│   └── (other static assets)
 ├── infrastructure/
 │   ├── scripts/
 │   │   ├── setup-db.sh                # MongoDB installation script
@@ -406,7 +420,7 @@ Assignment-3-Tier-Application-on-AWS-EC2/
 ├── docs/
 │   ├── architecture.png               # Architecture diagram
 │   └── troubleshooting.md             # Common issues & fixes
-└
+└── .gitignore
 ```
 
 ---
@@ -421,7 +435,7 @@ Assignment-3-Tier-Application-on-AWS-EC2/
 | Nginx config error | Syntax issue | Run `sudo nginx -t` before restart |
 | CORS errors | Missing middleware | Ensure `CORSMiddleware` is configured in `main.py` |
 | Git clone fails | Network or auth issue | Verify internet access + use HTTPS URL |
-| `python3: command not found` | Python not installed | Ubuntu 24.04 includes Python 3.12 by default |
+| `python3: command not found` | Python not installed | Ubuntu 26.04 includes Python 3.12+ by default |
 
 **Quick Network Tests**:
 ```bash
@@ -429,11 +443,4 @@ Assignment-3-Tier-Application-on-AWS-EC2/
 curl http://10.0.10.230:8000          # Test frontend locally
 curl http://10.0.1.226:9000/users     # Test backend reachability
 nc -zv 10.0.13.224 27017              # Test DB port connectivity
-
-# From backend instance:
-mongosh --host 10.0.13.224 --eval "db.adminCommand('ping')"  # Test DB connection
-```
-
----
-
 
